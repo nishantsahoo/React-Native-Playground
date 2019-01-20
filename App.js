@@ -4,36 +4,49 @@ import axios from 'axios';
 
 export default class App extends React.Component {
   buttonClick() {
-  	profile = {
-  		'body': 'Hello from React Native! This is Nishant Sahoo :3'
-  	}
-  	axios.post('https://test-app-nishant.herokuapp.com', profile)
-  	.then(res => {
-    	Alert.alert(
+  	var details = {
+        'body': 'Hello from React Native app. This is Nishant Sahoo!'
+        };
+    
+      var formBody = [];
+      for (var property in details) {
+          var encodedKey = encodeURIComponent(property);
+          var encodedValue = encodeURIComponent(details[property]);
+          formBody.push(encodedKey + "=" + encodedValue);
+      }
+
+  	fetch('https://test-app-nishant.herokuapp.com/', {
+        method: 'POST',
+        headers: {
+        Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: formBody
+      }).then((response) => response.json())
+        .then((responseJson) => {
+        	Alert.alert(
 	      'Yo',
-	       JSON.stringify(res),
+	       responseJson,
 	      [
 	        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
 	        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-	        {text: 'OK', onPress: () => console.log('OK Pressed')},
+	        {text: 'OK', onPress: () => console.log('OK Pressed in then')},
 	      ],
 	      { cancelable: false }
-	    )
-  	})
-  	.catch(error => {
-  		Alert.alert(
+	    )  
+        })
+      .catch((error) => {
+        Alert.alert(
 	      'Yo',
 	       JSON.stringify(error),
 	      [
 	        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
 	        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-	        {text: 'OK', onPress: () => console.log('OK Pressed')},
+	        {text: 'OK', onPress: () => console.log('OK Pressed in error')},
 	      ],
 	      { cancelable: false }
-	    )	
-  	})
-  	;
-
+	    )
+      });
   	
   }
 
