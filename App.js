@@ -1,18 +1,21 @@
 import React from 'react';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import axios from 'axios';
 
 export default class App extends React.Component {
   buttonClick() {
-  	Alert.alert(
-      'Yo',
-      "What's up?",
-      [
-        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-    )
+  	
+
+  	// Alert.alert(
+   //    'Yo',
+   //    "What's up?",
+   //    [
+   //      {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+   //      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+   //      {text: 'OK', onPress: () => console.log('OK Pressed')},
+   //    ],
+   //    { cancelable: false }
+   //  )
   }
 
   render() {
