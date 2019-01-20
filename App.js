@@ -4,18 +4,37 @@ import axios from 'axios';
 
 export default class App extends React.Component {
   buttonClick() {
-  	
+  	profile = {
+  		'body': 'Hello from React Native! This is Nishant Sahoo :3'
+  	}
+  	axios.post('https://test-app-nishant.herokuapp.com', profile)
+  	.then(res => {
+    	Alert.alert(
+	      'Yo',
+	       JSON.stringify(res),
+	      [
+	        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+	        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+	        {text: 'OK', onPress: () => console.log('OK Pressed')},
+	      ],
+	      { cancelable: false }
+	    )
+  	})
+  	.catch(error => {
+  		Alert.alert(
+	      'Yo',
+	       JSON.stringify(error),
+	      [
+	        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+	        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+	        {text: 'OK', onPress: () => console.log('OK Pressed')},
+	      ],
+	      { cancelable: false }
+	    )	
+  	})
+  	;
 
-  	// Alert.alert(
-   //    'Yo',
-   //    "What's up?",
-   //    [
-   //      {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-   //      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-   //      {text: 'OK', onPress: () => console.log('OK Pressed')},
-   //    ],
-   //    { cancelable: false }
-   //  )
+  	
   }
 
   render() {
