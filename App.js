@@ -15,17 +15,18 @@ export default class App extends React.Component {
           formBody.push(encodedKey + "=" + encodedValue);
       }
 
+      formBody = formBody.join("&");
   	fetch('https://test-app-nishant.herokuapp.com/', {
         method: 'POST',
         headers: {
-        Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
+      		Accept: 'application/json',
+      		'Content-Type': 'application/x-www-form-urlencoded'
+    	},
         body: formBody
       }).then((response) => response.json())
         .then((responseJson) => {
         	Alert.alert(
-	      'Yo',
+	      'Working',
 	       responseJson,
 	      [
 	        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
@@ -37,7 +38,7 @@ export default class App extends React.Component {
         })
       .catch((error) => {
         Alert.alert(
-	      'Yo',
+	      'Error',
 	       JSON.stringify(error),
 	      [
 	        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
